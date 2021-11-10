@@ -1,0 +1,63 @@
+body {
+
+    background-color: #252533;
+}
+.counterBody {
+    width: 500px;
+    height: 300px;
+    margin-top: 200px;
+    margin-left: 200px;
+    border-radius: 10px;
+    background-color: #252533;
+    border: 3px solid #4cd7fb;
+}
+
+.counter {
+    font-size: 100px;
+    width: 400px;
+    border-radius: 10px;
+    border: 3px solid #4cd7fb;
+    margin: 20px auto;
+    padding-bottom: 50px;
+    color:#4cd7fb;
+}
+.counterMAX {
+    color: red;
+    font-size: 100px;
+    width: 400px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+.btn {
+    padding: 12px;
+    width: 378px;
+    margin: 15px auto;
+    border: 3px solid #4cd7fb;
+    border-radius: 10px;
+}
+
+.decBtn {
+    color: #000000;
+    background-color: #4cd7fb;
+    margin-right: 10px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.resetBtn {
+    background-color: grey;
+    margin-right: 10px;
+    font-size: 30px;
+    font-weight: 700;
+
+}
+
+.incBtn {
+    color: #000000;
+    background-color: #4cd7fb;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
