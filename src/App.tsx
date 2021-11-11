@@ -6,25 +6,23 @@ import SetCounter from "./components/Setcounter";
 
 function App() {
 
-    let [inputValueMax, setInputValueMax] = useState('')
-    let [inputValueMin, setInputValueMin] = useState('')
-    let [data,setData] = useState(0)
+    let [inputValueMax, setInputValueMax] = useState<number | string>(0)
+    let [inputValueMin, setInputValueMin] = useState<number | string>(0)
+    let [data, setData] = useState<number | string>(0)
 
-    // useEffect(() => {
-    //
-    //     let valueAsStringMax = localStorage.getItem('ValueMax')
-    //     let valueAsStringMin = localStorage.getItem('ValueMin')
-    //     if (valueAsStringMax) {
-    //
-    //         let newValueMax = JSON.parse(valueAsStringMax)
-    //         setInputValueMax(newValueMax)
-    //     }
-    //     if (valueAsStringMin) {
-    //         let newValueMin = JSON.parse(valueAsStringMin)
-    //         setInputValueMin(newValueMin)
-    //     }
-    //
-    // }, [])
+    useEffect(() => {
+        let valueAsStringMax = localStorage.getItem('ValueMax')
+        let valueAsStringMin = localStorage.getItem('ValueMin')
+        if (valueAsStringMax) {
+            setInputValueMax(JSON.parse(valueAsStringMax))
+        }
+        if (valueAsStringMin) {
+            setInputValueMin(JSON.parse(valueAsStringMin))
+            setData(JSON.parse(valueAsStringMin))
+            setInputValueMin(JSON.parse(valueAsStringMin))
+        }
+
+    }, [])
 
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValueMax(e.currentTarget.value)
@@ -37,24 +35,29 @@ function App() {
         localStorage.setItem('ValueMin', JSON.stringify(inputValueMin))
         localStorage.setItem('ValueMax', JSON.stringify(inputValueMax))
         let valueAsStringMin = localStorage.getItem('ValueMin')
+        let valueAsStringMax = localStorage.getItem('ValueMax')
         if (valueAsStringMin) {
             let newValueMin = JSON.parse(valueAsStringMin)
             setData(newValueMin)
-            setData(JSON.parse(inputValueMin))
+            setData(inputValueMin)
+        }
+        if (valueAsStringMax) {
+            let newValueMax = JSON.parse(valueAsStringMax)
+            setInputValueMax(JSON.parse (newValueMax))
         }
     }
 
-    const dataInc = ()=>{
+    const dataInc = () => {
 
-        setData(data+1)
+        setData(+data + 1)
     }
-    const dataReset = ()=>{
-        setData(JSON.parse(inputValueMin) )
+    const dataReset = () => {
+        setData(inputValueMin)
     }
     return (
         <div className="App">
-            <SetCounter onChangeMaxValue={onChangeMaxValue} onChangeMinValue={onChangeMinValue} valueSet={valueSet}/>
-            <CounterBody dataInc={dataInc} dataReset={dataReset} data={data}/>
+            <SetCounter onChangeMaxValue={onChangeMaxValue} onChangeMinValue={onChangeMinValue} valueSet={valueSet} inputValueMax={inputValueMax} inputValueMin={inputValueMin}/>
+            <CounterBody dataInc={dataInc} dataReset={dataReset} data={data} inputValueMax={inputValueMax} inputValueMin={inputValueMin} />
         </div>
     );
 }

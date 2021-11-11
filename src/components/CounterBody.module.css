@@ -25,8 +25,10 @@ body {
     color: red;
     font-size: 100px;
     width: 400px;
-    margin: 0 auto;
-    padding-bottom: 80px;
+    border-radius: 10px;
+    border: 3px solid #4cd7fb;
+    margin: 20px auto;
+    padding-bottom: 50px;
 }
 
 .btn {
@@ -58,6 +60,15 @@ body {
     background-color: #4cd7fb;
     font-size: 30px;
     font-weight: 700;
+}
+.error {
+    font-size: 50px;
+    width: 400px;
+    border-radius: 10px;
+    border: 3px solid red;
+    margin: 20px auto;
+    padding-bottom:108px;
+    color: red;
 }
 
 
