@@ -12,7 +12,7 @@ function InputMax(props: propsType) {
     return (
         <div className={s.value}>
             <span className={s.span}>{props.title}</span>
-            <input className={s.input} type="number" onChange={props.onChangeMaxValue} />
+            <input className={s.input} type="number" onChange={props.onChangeMaxValue}/>
         </div>
     )
 }

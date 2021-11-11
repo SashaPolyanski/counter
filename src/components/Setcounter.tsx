@@ -7,6 +7,7 @@ import InputMin from "./InputMin";
 type PropsType = {
     onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=>void
     onChangeMinValue:(e: ChangeEvent<HTMLInputElement>)=>void
+    valueSet:()=>void
 }
 
 function SetCounter(props: PropsType) {
@@ -17,13 +18,14 @@ function SetCounter(props: PropsType) {
     return (
         <div className={s.counterBody}>
             <div className={s.counter}>
+
                 <div>
                     <InputMax title={'value max:'} onChangeMaxValue={props.onChangeMaxValue}/>
                     <InputMin title={'value start:'} onChangeMinValue={props.onChangeMinValue}/>
                 </div>
             </div>
             <div className={s.btn}>
-                <button className={s.decBtn} >SET
+                <button className={s.decBtn} onClick={props.valueSet} >SET
                 </button>
             </div>
         </div>

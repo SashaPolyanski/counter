@@ -2,33 +2,26 @@ import React, {useState} from 'react';
 import s from './CounterBody.module.css'
 
 
-function CounterBody() {
+type PropsType = {
+    data:any
+    dataInc: ()=>void
+    dataReset:()=>void
+}
 
 
-  let [data, setData] = useState(0);
+function CounterBody(props:PropsType) {
 
-  const onClickDecHandler = () => {
-    setData(data - 1)
-  }
-  const onClickResetHandler = () => {
-    setData(0)
-  }
-  const onClickIncHandler = () => {
-    setData(data + 1)
-  }
 
 
   return (
       <div className={s.counterBody}>
-        <div className={data === 5 ? s.counterMAX : s.counter}>
-            {data}
+        <div className={s.counter}>
+            {props.data}
         </div>
         <div className={s.btn}>
-          <button disabled={data === -5} className={s.decBtn} onClick={onClickDecHandler}>DEC
+          <button className={s.resetBtn} onClick={props.dataReset}>RESET
           </button>
-          <button disabled={data === 0} className={s.resetBtn} onClick={onClickResetHandler}>RESET
-          </button>
-          <button disabled={data === 5} className={s.incBtn} onClick={onClickIncHandler}>INC
+          <button disabled={false} className={s.incBtn} onClick={props.dataInc}>INC
           </button>
         </div>
       </div>

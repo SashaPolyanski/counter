@@ -5,44 +5,56 @@ import SetCounter from "./components/Setcounter";
 
 
 function App() {
-    let [inputValue, setInputValue] = useState('')
+
+    let [inputValueMax, setInputValueMax] = useState('')
     let [inputValueMin, setInputValueMin] = useState('')
+    let [data,setData] = useState(0)
+
+    // useEffect(() => {
+    //
+    //     let valueAsStringMax = localStorage.getItem('ValueMax')
+    //     let valueAsStringMin = localStorage.getItem('ValueMin')
+    //     if (valueAsStringMax) {
+    //
+    //         let newValueMax = JSON.parse(valueAsStringMax)
+    //         setInputValueMax(newValueMax)
+    //     }
+    //     if (valueAsStringMin) {
+    //         let newValueMin = JSON.parse(valueAsStringMin)
+    //         setInputValueMin(newValueMin)
+    //     }
+    //
+    // }, [])
+
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.currentTarget.value)
+        setInputValueMax(e.currentTarget.value)
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValueMin(e.currentTarget.value)
     }
-    useEffect(() => {
-        let valueAsStringMax = localStorage.getItem('ValueMax')
-        if (valueAsStringMax) {
-            let newValueMax = JSON.parse(valueAsStringMax)
-            setInputValue(newValueMax)
-        }
 
-    }, [])
-
-    useEffect(() => {
+    const valueSet = () => {
+        localStorage.setItem('ValueMin', JSON.stringify(inputValueMin))
+        localStorage.setItem('ValueMax', JSON.stringify(inputValueMax))
         let valueAsStringMin = localStorage.getItem('ValueMin')
         if (valueAsStringMin) {
             let newValueMin = JSON.parse(valueAsStringMin)
-            setInputValueMin(newValueMin)
+            setData(newValueMin)
+            setData(JSON.parse(inputValueMin))
         }
-    }, [])
+    }
 
+    const dataInc = ()=>{
 
-    useEffect(() => {
-        localStorage.setItem('ValueMax', JSON.stringify(inputValue))
-    }, [inputValue])
-    useEffect(() => {
-        localStorage.setItem('ValueMin', JSON.stringify(inputValueMin))
-    }, [inputValueMin])
-
-
+        setData(data+1)
+    }
+    const dataReset = ()=>{
+        setData(JSON.parse(inputValueMin) )
+    }
     return (
         <div className="App">
-            <SetCounter onChangeMaxValue={onChangeMaxValue} onChangeMinValue={onChangeMinValue}/>
-            <CounterBody/>
+            <SetCounter onChangeMaxValue={onChangeMaxValue} onChangeMinValue={onChangeMinValue} valueSet={valueSet}/>
+            <CounterBody dataInc={dataInc} dataReset={dataReset} data={data}/>
         </div>
     );
 }
