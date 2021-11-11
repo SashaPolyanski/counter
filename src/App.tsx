@@ -43,7 +43,7 @@ function App() {
         }
         if (valueAsStringMax) {
             let newValueMax = JSON.parse(valueAsStringMax)
-            setInputValueMax(JSON.parse (newValueMax))
+            setInputValueMax(JSON.parse(newValueMax))
         }
     }
 
@@ -56,8 +56,18 @@ function App() {
     }
     return (
         <div className="App">
-            <SetCounter onChangeMaxValue={onChangeMaxValue} onChangeMinValue={onChangeMinValue} valueSet={valueSet} inputValueMax={inputValueMax} inputValueMin={inputValueMin}/>
-            <CounterBody dataInc={dataInc} dataReset={dataReset} data={data} inputValueMax={inputValueMax} inputValueMin={inputValueMin} />
+            <SetCounter
+                onChangeMaxValue={onChangeMaxValue}
+                onChangeMinValue={onChangeMinValue}
+                valueSet={valueSet}
+                inputValueMax={inputValueMax}
+                inputValueMin={inputValueMin}/>
+            <CounterBody
+                dataInc={dataInc}
+                dataReset={dataReset}
+                data={data}
+                inputValueMax={inputValueMax}
+                inputValueMin={inputValueMin}/>
         </div>
     );
 }

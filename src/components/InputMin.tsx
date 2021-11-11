@@ -5,8 +5,8 @@ import InputMax from "./Input";
 type propsType = {
     title: string
     onChangeMinValue: (e: ChangeEvent<HTMLInputElement>) => void
-    inputValueMax: any
-    inputValueMin: any
+    inputValueMax: string | number
+    inputValueMin: string | number
 }
 
 function InputMin(props: propsType) {
@@ -16,8 +16,7 @@ function InputMin(props: propsType) {
         <div className={s.value}>
             <span className={s.span}>{props.title}</span>
             <input
-                value={props.inputValueMin}
-                className={props.inputValueMax >= props.inputValueMin && props.inputValueMin > -1 ? s.input : s.error}
+                className={props.inputValueMin>=props.inputValueMax ? s.error : s.input}
                 type="number" onChange={props.onChangeMinValue}/>
         </div>
     )
