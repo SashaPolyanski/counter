@@ -4,17 +4,18 @@ import s from './Maxinput.module.css'
 type propsType = {
     title: string
     onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=>void
-    inputValueMax:string | number
-    inputValueMin:string | number
+    inputValueMax:number | null
+    inputValueMin:number | null
 }
 
 function InputMax(props: propsType) {
-
+    let maxValue = Number(props.inputValueMax)
+    let minValue = Number(props.inputValueMin)
 
     return (
         <div className={s.value}>
             <span className={s.span}>{props.title}</span>
-            <input value={props.inputValueMax} className={props.inputValueMax<=props.inputValueMin ? s.errorMax : s.input} type="number" onChange={props.onChangeMaxValue} />
+            <input value={maxValue} className={maxValue<=minValue? s.errorMax : s.input} type="number" onChange={props.onChangeMaxValue} />
         </div>
     )
 }
